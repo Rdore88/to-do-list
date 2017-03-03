@@ -10,4 +10,8 @@ def update_name(new_name)
   self.name = new_name
 end
 
+def update_description(new_description)
+  self.description = new_description
+end
+
 end
