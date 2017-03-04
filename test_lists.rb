@@ -7,7 +7,7 @@ require 'pry'
 require_relative 'tasks'
 require_relative 'lists'
 require_relative 'db_connection'
-# require_relative 'todo_database'
+require_relative 'todo_database'
 ActiveRecord::Migration.verbose = false
 
 class TestLists < Minitest::Test
@@ -45,6 +45,13 @@ class TestLists < Minitest::Test
     weekend = List.new(name: "Weekend List")
     laundry = Task.create(name: "Laundry")
     assert_equal [laundry], weekend.add_task(laundry)
+  end
+
+  def test_print_list
+    weekend = List.create(name: "Weekend List")
+    laundry = Task.create(name: "Laundry")
+    weekend.add_task(laundry)
+    assert_equal [laundry], weekend.print_list
   end
 
 end
