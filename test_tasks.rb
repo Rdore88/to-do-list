@@ -5,7 +5,8 @@ require 'minitest/focus'
 require "active_record"
 require 'pry'
 require_relative 'tasks'
-require_relative 'todo_database'
+require_relative 'db_connection'
+# require_relative 'todo_database'
 require 'time'
 ActiveRecord::Migration.verbose = false
 
@@ -53,6 +54,7 @@ class TestTask < Minitest::Test
   def test_complete
     laundry = Task.create(name: "Laundry")
     assert_in_delta Time.now, laundry.complete, 1
+    binding.pry
   end
 
   def test_display_all

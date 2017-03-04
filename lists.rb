@@ -1,6 +1,7 @@
 require "active_record"
 require 'pry'
-require_relative 'todo_database'
+require_relative 'db_connection'
+# require_relative 'todo_database'
 
 class List < ActiveRecord::Base
   has_many :tasks

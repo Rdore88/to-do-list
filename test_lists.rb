@@ -6,7 +6,8 @@ require "active_record"
 require 'pry'
 require_relative 'tasks'
 require_relative 'lists'
-require_relative 'todo_database'
+require_relative 'db_connection'
+# require_relative 'todo_database'
 ActiveRecord::Migration.verbose = false
 
 class TestLists < Minitest::Test

@@ -2,22 +2,23 @@ require "active_record"
 
 ActiveRecord::Base.establish_connection(
   adapter: "sqlite3",
-  database: "lists/chores.db"
+  database: "lists/tasks.db"
   )
 
-class CreateChoresTable < ActiveRecord::Migration[5.0]
+class CreateTasksTable < ActiveRecord::Migration[5.0]
 
   def up
-    create_table :chores do |t|
+    create_table :tasks do |t|
       t.string :name
       t.text :description
+      t.datetime :completed_at, default: false
+      t.integer :list_id
     end
   end
 
   def down
-      drop_table :chores
+      drop_table :tasks
     end
-
 end
 
 class CreateListsTable < ActiveRecord::Migration[5.0]
@@ -31,5 +32,11 @@ class CreateListsTable < ActiveRecord::Migration[5.0]
   def down
     drop_table :lists
   end
-
 end
+
+
+CreateTasksTable.migrate(:up)
+CreateListsTable.migrate(:up)
+
+# CreateTasksTable.migrate(:down)
+# CreateListsTable.migrate(:down)
