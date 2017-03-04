@@ -1,6 +1,6 @@
 require "active_record"
 require 'pry'
-# require_relative 'todo_database'
+require_relative 'todo_database'
 require_relative 'db_connection'
 
 class Task < ActiveRecord::Base
@@ -18,7 +18,6 @@ belongs_to :list
   def complete
     self.completed_at.to_i
     self.completed_at = Time.now
-    self.save
   end
 
   def self.display_all
