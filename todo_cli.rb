@@ -15,6 +15,8 @@ class TodoCli
         completed
       when "display"
         display
+      when "search"
+        search
     end
   end
 
@@ -38,6 +40,9 @@ class TodoCli
     Task.display_all
   end
 
-
+  def search
+    puts Task.search_task(@args[1]).name
+    binding.pry
+  end
 
 end
