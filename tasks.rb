@@ -18,10 +18,19 @@ belongs_to :list
   def complete
     self.completed_at.to_i
     self.completed_at = Time.now
+    self.save
   end
 
   def self.display_all
     self.all.each {|el| puts el.name}
+  end
+
+  def destroy
+    self.delete
+  end
+
+  def self.search_task(task_name)
+    Task.all.where(name: task_name)
   end
 
 end

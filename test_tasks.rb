@@ -59,6 +59,7 @@ class TestTask < Minitest::Test
   def test_complete
     laundry = Task.create(name: "Laundry")
     assert_in_delta Time.now, laundry.complete, 1
+    binding.pry
   end
 
   def test_display_all
@@ -67,6 +68,24 @@ class TestTask < Minitest::Test
     assert_output(/Laundry\nFood Prep\n/) do
       Task.display_all
     end
+  end
+
+  def test_time_to_complete
+    laundry = Task.create(name: "Laundry")
+    laundry.complete
+    laundry.reload
+  end
+
+  def test_delete_task
+    laundry = Task.create(name: "Laundry")
+    laundry.destroy
+  end
+
+  def test_search_task
+    laundry = Task.create(name: "Laundry")
+    cook = Task.create(name: "Food Prep")
+    assert_equal [laundry], Task.search_task("Laundry")
+
   end
 
 end
