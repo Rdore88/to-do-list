@@ -14,16 +14,6 @@ ActiveRecord::Migration.verbose = false
 
 class TodoCliTest < Minitest::Test
 
-  # def setup
-  #   CreateTasksTable.migrate(:up)
-  #   CreateListsTable.migrate(:up)
-  # end
-  #
-  # def teardown
-  #   CreateTasksTable.migrate(:down)
-  #   CreateListsTable.migrate(:down)
-  # end
-
   def test_new_task
     input = TodoCli.new(["new", "Laundry", "Weekend"])
     assert_equal 1, Task.all.length

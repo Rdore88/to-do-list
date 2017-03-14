@@ -4,11 +4,19 @@ require_relative 'db_connection'
 require_relative 'tasks'
 require_relative 'lists'
 
+ActiveRecord::Base.establish_connection(
+  adapter: "sqlite3",
+  database: "production.db"
+  )
+
 class TodoCli
   attr_reader :args
   def initialize(args)
     @args = args
     case @args.first
+      when "install"
+        CreateTasksTable.migrate(:up)
+        CreateListsTable.migrate(:up)
       when "new"
         new_task
       when "completed"

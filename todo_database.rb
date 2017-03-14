@@ -11,8 +11,9 @@ class CreateTasksTable < ActiveRecord::Migration[5.0]
     create_table :tasks do |t|
       t.string :name
       t.text :description
-      t.datetime :completed_at, default: false
+      t.datetime :completed_at
       t.integer :list_id
+      t.datetime :created_at
     end
   end
 
@@ -35,8 +36,8 @@ class CreateListsTable < ActiveRecord::Migration[5.0]
 end
 
 
-CreateTasksTable.migrate(:up)
-CreateListsTable.migrate(:up)
-
+# CreateTasksTable.migrate(:up)
+# CreateListsTable.migrate(:up)
+#
 # CreateTasksTable.migrate(:down)
 # CreateListsTable.migrate(:down)
